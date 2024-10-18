@@ -1,0 +1,2 @@
+# Contour
+Contour is a web application, inspired by [Artstation](https://www.artstation.com/), which allows users to share their artworks with everyone. The "everyone" may be understood figuratively, but I also take pride in its more literal meaning - in the spirit of Progressive Enhancement, the basic functionality (that being viewing the pictures' gallery) uses no JavaScript, to ensure it does not stop anyone from accessing the website.
