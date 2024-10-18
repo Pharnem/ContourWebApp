@@ -1,0 +1,72 @@
+<div class="card">
+    <div class="card-image">
+            <img src="@(picture-fullsize p)" alt="@(picture-title p)">
+    </div>
+    <div class="card-author">
+        <a class="author-name" href="/users/@(user-id author)">
+            @(user-name author)
+        </a> 
+        <a class="author-avatar" href="/users/@(user-id author)">
+            <img src="@(user-avatar author)">
+        </a>
+    </div>
+    <div class="card-title">
+        @(picture-title p)
+    </div>
+    <div class="card-tags">
+        @in[t (picture-tags p)]{
+            <a class="card-tag button" href="/pictures/?tag=@|t|">@|t|</a>
+        }
+    </div>
+    <div class="card-like">
+        <button type="button"
+        data-method="POST" 
+        data-uri="/api/pictures/@(picture-id p)/bookmark"
+        data-on-icon="turned_in"
+        data-off-icon="turned_in_not"
+        data-on-value='{"bookmark": true}'
+        data-off-value='{"bookmark": false}'
+        data-toggle='@if[(picture-bookmark p) "on" "off"]'
+        @maybe[(not (session-user))]{disabled}></button>
+    </div>
+    <div class="card-desc">
+        <pre>@(picture-description p)</pre>
+    </div>
+</div>
+@maybe[(or (equal? (picture-author-id p) (session-user)) (if (session-user) (user-manager? (session-user)) #f))]{
+    <button id="admin-toggle" 
+        type="button" 
+        data-toggle="off" 
+        data-dialog="admin-panel"
+        data-on-icon="clear"
+        data-off-icon="menu">
+    </button>
+
+    <dialog id="admin-panel">
+        <div>Manage</div>
+        <button type="button" 
+            data-method="POST" 
+            data-uri="/api/pictures/@(picture-id p)/deleted"
+            data-on-icon="settings_backup_restore"
+            data-off-icon="clear"
+            data-on-value='{"deleted": true}'
+            data-off-value='{"deleted": false}'
+            data-toggle='@if[(picture-deleted? p) "on" "off"]'
+            title="Delete/recover picture. Note that you can't undo this action after leaving this page.">
+            @if[(picture-deleted? p) "Recover?" "Delete?"]
+        </button>
+        @maybe[(and (session-user) (user-manager? (session-user)))]{
+            <button type="button"  
+                data-method="POST" 
+                data-uri="/api/pictures/@(picture-id p)/restricted"
+                data-on-icon="visibility_off"
+                data-off-icon="visibility"
+                data-on-value='{"restricted": true}'
+                data-off-value='{"restricted": false}'
+                data-toggle='@if[(picture-restricted? p) "on" "off"]'
+                title="Toggle picture's visibility to normal users.">
+                @if[(picture-restricted? p) "Publish?" "Hide?"]
+            </button>
+        }
+    </dialog>
+}

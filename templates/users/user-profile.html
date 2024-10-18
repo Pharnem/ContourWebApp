@@ -1,0 +1,61 @@
+<div id="profile">
+    <div id="info">
+        <div id="username">@(user-name usr)</div>
+        <img id="avatar" src="@(user-avatar usr)" alt="Avatar">
+    </div>
+    <div id="gallery">
+        @in[p picts]{
+            <a href="/pictures/@(picture-id p)">
+                    <img src="@(picture-thumbnail p)">
+            </a>
+        }
+    </div>
+    <a id="gallery-button" class="button" href="/pictures/?author=@(user-name usr)">Show posted pictures.</a>
+</div>
+@maybe[(equal? usr (session-user))]{<div id="settings">
+    <header>Settings</header>
+    <button id="logut-button"
+            type="button" 
+            data-action
+            data-method="DELETE"
+            data-uri="/api/sessions/current"
+            data-redirect-uri="/login">
+            Sign out?
+        </button>
+    <div id="avatar-form" class="form-container">
+        <div class="form-title">Change Avatar</div>
+        <div class="form-status"></div>
+        <form class="form-content" data-method="POST" data-uri="/api/users/me/avatar" data-redirect-uri="/users/me">
+            <label for="avatar" hidden>Avatar</label>
+            <input type="file" name="avatar" placeholder="Avatar" accept="image/*">
+            <img data-preview="avatar">
+            <button type="submit">Change Avatar</button>
+        </form>
+        <div class="form-postnote">
+        </div>
+    </div>
+</div>}
+
+@maybe[(if (and (session-user) (not (equal? (session-user) usr))) (user-admin? (session-user)) #f)]{
+    <button id="admin-toggle" 
+        type="button" 
+        data-toggle="off" 
+        data-dialog="admin-panel"
+        data-on-icon="clear"
+        data-off-icon="menu">
+    </button>
+    <dialog id="admin-panel">
+        <div>Admin Panel</div>
+        <button type="button" 
+            data-method="POST"
+            data-uri="/api/users/@|user-id|/banned"
+            data-on-icon="undo"
+            data-off-icon="block"
+            data-on-value='{"banned": true}'
+            data-off-value='{"banned": false}'
+            data-toggle='@if[(user-banned? usr) "on" "off"]'
+            title="Ban/unban user.">
+            @if[(user-banned? usr) "Unban?" "Ban?"]
+        </button>
+    </dialog>
+}

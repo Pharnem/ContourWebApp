@@ -1,0 +1,79 @@
+.form-container {
+  margin: auto;
+  width: 100ex;
+  max-width: 100%;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+}
+@media (prefers-color-scheme: light) {
+  .form-container {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .form-container {
+    color: white;
+    background-color: #242424;
+  }
+}
+.form-title {
+  font-size: 3rem;
+}
+.form-status {
+  font-weight: bold;
+}
+.form-status.status-error {
+  color: palevioletred;
+}
+.form-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-content input,
+.form-content textarea {
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  padding: 0.5em 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  resize: none;
+}
+.form-content textarea {
+  height: 10em;
+}
+.form-content button {
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  padding: 0.5em 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
+.form-content img {
+  max-width: 4em;
+}
+.form-postnote a {
+  text-decoration: none;
+  border-radius: 1em;
+  padding: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+@media (prefers-color-scheme: light) {
+  .form-postnote a {
+    color: white;
+    background-color: #5b5b5b;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .form-postnote a {
+    color: black;
+    background-color: #e8e8e8;
+  }
+}
+.form-postnote a:hover {
+  color: #eb8c1f;
+}

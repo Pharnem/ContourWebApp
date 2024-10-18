@@ -1,0 +1,297 @@
+@import "conf.less";
+
+.center() {
+    align-self: center;
+    justify-self: center;
+}
+.right() {
+    align-self: center;
+    justify-self: right;
+}
+
+.outline(@color) {
+    border-radius: 10px;
+    outline: 5px solid @color;
+}
+
+.border(@color) {
+    border-radius: 10px;
+    border: 3px solid @color;
+}
+
+#filters {
+    display: grid;
+    grid-template-columns: 2fr 8fr 1ex 2fr 1fr;
+    grid-template-rows: 2em 1ex 2em;
+    grid-template-areas: 
+    "al ai . rel re"
+    ". . . . ."
+    "tl ti . su su";
+    align-items: stretch;
+    justify-items: stretch;
+    column-gap: 0;
+    row-gap: 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    z-index: 0;
+    label {
+        align-self: center;
+        justify-self: center;
+    }
+    #author-label {
+        grid-area: al;
+    }
+    #restricted-label {
+        grid-area: rel;
+    }
+    #restricted-toggle {
+        grid-area: re;
+        accent-color: #theme[accent];
+    }
+    #tags-label {
+        grid-area: tl;
+    }
+    #author-input {
+        grid-area: ai;
+    }
+    #tags-input {
+        grid-area: ti;
+    }
+    #search {
+        border-radius: 0.5em;
+        grid-area: su;
+    }
+}
+
+#cards-gallery {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    row-gap: 4em;
+    align-content: center;
+    justify-content: space-around;
+    margin-bottom: 2em;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 400px 25px 250px 100px 25px;
+    grid-template-rows: 3.5em 1em 1em 1em 1fr 2em 4em 1em;
+    grid-template-areas: 
+    "img . user user user"
+    "img . . . ."
+    "img . title title ."
+    "img . . . ."
+    "img . desc desc ."
+    "img . tags . ."
+    "img . tags like ."
+    "img . . . .";
+    column-gap: 0;
+    row-gap: 0;
+    max-width: 800px;
+    max-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    z-index: 0;
+    @media @small {
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: auto 1em 3em 1em 1fr 3em 4em 1em;
+        grid-template-areas: 
+        "img img"
+        ". ."
+        "title user"
+        ". ."
+        "desc desc"
+        "tags ."
+        "tags like"
+        " . .";
+        width: auto;
+        max-width: 100%;
+        max-height: 800px;
+    }
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+}
+.card-author {
+    .right();
+    float: right;
+    grid-area: user;
+    display: flex;
+    .author-name {
+        align-self:center;
+        justify-self: center;
+        display: block;
+        text-decoration: none;
+        margin-right: 1ch;
+        margin-top: 1ch;
+        @media @light {
+            #theme.light.menu()
+        }
+        @media @dark {
+            #theme.dark.menu()
+        }
+        &:hover {
+            color: #theme[accent];
+        }
+        @media @small {
+            margin-top: 0;
+        }
+    }
+    img {
+        display: inline-block;
+        border-radius: 100%;
+        outline: 0.15em solid #theme[accent];
+        width: 3em;
+        height: 3em;
+        margin-right: 1ch;
+        margin-top: 1ch;
+        @media @small {
+            margin-top: 0;
+            margin-right: 2em;
+            width: 2em;
+            height: fit-content;
+        }
+    }
+}
+.card-image {
+    grid-area: img;
+    align-self: flex-start;
+    justify-self: center;
+    width: 400px;
+    height: 400px;
+    img {
+        border-radius: 10px;
+        .center();
+        min-width: 400px;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        z-index: 100;
+    }
+    @media @small {
+        min-width: 0;
+        width: 100%;
+        
+        img {
+            min-width: 0;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+.card-title { 
+    grid-area: title;
+    font-size: larger;
+    font-weight: bolder;
+    .center();
+}
+.card-tags { 
+    .center();
+    align-self: end;
+    grid-area: tags;
+    height: fit-content;
+    width: 100%;
+    padding-right: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    @media @small {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.card-like {
+    .center();
+    align-self: baseline;
+    justify-self: stretch;
+    grid-area: like;
+    width: 50%;
+    height: 50%;
+    button {
+        font-size: 3em;
+        cursor: pointer;
+        @media @light {
+            color: #theme.light.button[background-color];
+            &:hover {
+                color: #theme[accent];
+            }
+        }
+        @media @dark {
+            color: #theme.dark.button[background-color];
+            &:hover {
+                color: #theme[accent];
+            }
+        }
+        background-color: transparent;
+        &:disabled {
+            opacity: 50%;
+            cursor: not-allowed;
+        }
+    }
+}
+.card-desc { 
+    .center();
+    align-self: start;
+    grid-area: desc;
+    overflow-y: auto;
+    height: 100%;
+    @media @small {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
+.card-tag {
+    margin-right: 1ch;
+    margin-bottom: 1ch;
+    padding: 0;
+    display: inline-block;
+    text-align: end;
+}
+.page-nav {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    width: 10%;
+    padding: 0.5em 0em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    border-radius: 0.25em;
+    a {
+        display: block;
+        text-decoration: none;
+        border-radius: 1em;
+        @media @light {
+            #theme.light.input()
+        }
+        @media @dark {
+            #theme.dark.input()
+        }
+        &:hover,
+        &.active {
+            color: #theme[accent];
+        }
+        &.active {
+            pointer-events: none;
+        }
+    }
+    @media @light {
+        #theme.light.input();
+        color: #theme[accent];
+    }
+    @media @dark {
+        #theme.dark.input();
+        color: #theme[accent];
+    }
+}

@@ -1,0 +1,11 @@
+<div id="container">
+    <h1>Please enter your account's email:</h1>
+    <form id="main-form" action="/requests/" method="post">
+        <label for="email" hidden>Email</label>
+        <input type="text" placeholder="example@"@"mail.com" name="email" required/><br/>
+        <button type="submit">Recover</button>
+    </form>
+    <div id="loading-message"></div>
+    <div id="success-message"></div>
+    <div id="error-message"></div>
+</div>

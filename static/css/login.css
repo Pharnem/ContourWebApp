@@ -1,0 +1,40 @@
+#container {
+  margin: auto;
+  width: 100ex;
+  max-width: 100%;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+}
+@media (prefers-color-scheme: light) {
+  #container {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #container {
+    color: white;
+    background-color: #242424;
+  }
+}
+#main-form {
+  margin-left: auto;
+  margin-right: auto;
+}
+#main-form input {
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  padding: 0.5em 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
+#main-form button {
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  padding: 0.5em 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}

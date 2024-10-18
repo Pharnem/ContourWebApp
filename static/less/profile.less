@@ -1,0 +1,132 @@
+@import "conf.less";
+
+img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+#profile,#settings {
+    margin: auto;
+    width: 100ex;
+    max-width: 100%;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+    margin-bottom: 2rem;
+    a.button, button {
+        text-align: center;
+        font-size: larger;
+        width: 100%;
+        padding: 0.5em 0;
+        margin-bottom: 1em;
+        border-radius: 1em;
+    }
+}
+#settings > * {
+    margin-bottom: 1rem;
+}
+#profile {
+    display: flex;
+    flex-direction: column;
+}
+#info {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-content: center;
+    margin-bottom: 2em;
+}
+#username {
+    font-size: xxx-large;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#avatar {
+    margin-right: 1em;
+    border-radius: 100%;
+    outline: 0.15em solid #theme[accent];
+    max-width: 100px;
+    max-height: 100px;
+}
+#gallery {
+    display: flex;
+    flex-direction: row;
+    align-content: start;
+    justify-content: space-around;
+    margin-bottom: 2em;
+    height: 100%;
+    width: auto;
+    a {
+        display: inline-block;
+        margin-bottom: auto;
+        height: fit-content;
+    }
+    @media @small {
+        
+        img {
+            min-width: 0;
+            width: 100%;
+        }
+    }
+}
+header {
+    font-size: xx-large;
+}
+#logut-button { 
+    font-size: larger;
+}
+.form-title {
+    font-size: 2rem !important;
+}
+
+#admin-toggle {
+    position: fixed;
+    right: 0.5em;
+    bottom: 0.5em;
+    width: 2em;
+    height: 1.5em;
+}
+
+#admin-panel[open] {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 4.5em;
+    bottom: 0.5em;
+    height: fit-content;
+    padding: 0.5em;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: #theme[accent];
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+    button {
+        margin: 0.25em;
+    }
+}
+
+.admin-title {
+    font-size: larger;
+}
+

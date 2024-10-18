@@ -1,0 +1,22 @@
+<form id="filters" method="GET" action="/users/">
+    <label id="search-label" for="author-input">Author:</label>
+    <input id="search" name="search" type="text" placeholder="Author" value="@|search-string|">
+    <button id="search-button" type="submit">Search</button>
+    @maybe[(and (session-user) (user-admin? (session-user)))]{
+        <input type="checkbox" id="banned-toggle" name="admin" value="true" @maybe[banned]{checked}>
+        <label id="banned-label" for="banned-toggle">View Banned?</label>
+    }
+</form>
+<template id="pagelink-template">
+    <a href="#">1</a>
+</template>
+<template id="author-template">
+    <a href="/users/user-id" id="user-id" class="author">
+            <img class="author-avatar" src="">
+            <div class="author-name">user-name</div>
+            <img class="author-sample" src="">
+    </a>
+</template>
+<div class="page-nav"></div>
+<div id="frame"></div>
+<div class="page-nav"></div>

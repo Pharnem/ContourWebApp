@@ -1,0 +1,11 @@
+<form action="/api/pictures/" method="post" enctype="multipart/form-data">
+    <label id="file-label" for="picture"><b>Picture</b></label>
+    <input id="file" type="file" placeholder="Choose file:" name="picture" accept=".jpg,.jpeg,.png,.webp,.gif" required/><br/>
+    <label id="title-label" for="title"><b>Title</b></label>
+    <input id="title" type="text" placeholder="Title" name="title" required/><br/>
+    <label id="description-label" for="description"><b>Description</b></label>
+    <textarea id="description" name="description" placeholder="Description" required></textarea><br/>
+    <label id="tags-label" for="tags"><b>Tags</b></label>
+    <input id="tags" type="text" placeholder="tag1 tag2 ..." name="tags" required/><br/>
+    <button id="submit-button" type="submit">Post</button>
+</form>

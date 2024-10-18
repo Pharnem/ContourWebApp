@@ -1,0 +1,18 @@
+<div class="form-container">
+    <div class="form-title">Post new picture</div>
+    <div class="form-status"></div>
+    <form class="form-content" data-method="POST" data-uri="/api/pictures" data-redirect-uri="{location}">
+        <img data-preview="picture">
+        <label id="file-label" for="picture" hidden><b>Picture</b></label>
+        <input id="file" type="file" placeholder="Choose file:" name="picture" accept="image/*" required/><br/>
+        <label id="title-label" for="title" hidden><b>Title</b></label>
+        <input id="title" type="text" placeholder="Title" name="title" required/><br/>
+        <label id="description-label" for="description" hidden><b>Description</b></label>
+        <textarea id="description" name="description" placeholder="Description" required></textarea><br/>
+        <label id="tags-label" for="tags" hidden><b>Tags</b></label>
+        <input id="tags" type="text" placeholder="tag1 tag2 ..." name="tags" required/><br/>
+        <button id="submit-button" type="submit">Post</button>
+    </form>
+    <div class="form-postnote">
+    </div>
+</div>

@@ -1,0 +1,54 @@
+@small: ~"(max-width: 800px)";
+@medium: ~"(max-width: 1200px)";
+@large: ~"(min-width: 1200px)";
+@light: ~"(prefers-color-scheme: light)";
+@dark: ~"(prefers-color-scheme: dark)";
+
+#theme() {
+    accent: rgb(235, 140, 31);
+    .light {
+        .button {
+            color: white;
+            background-color: rgb(36, 36, 36);
+        }
+        .input {
+            color: white;
+            background-color: rgb(91, 91, 91);
+        }
+        .menu {
+            color: black;
+            background-color: rgb(216, 216, 216);
+        }
+        .body {
+            color: black;
+            background-color: white;
+        }
+    }
+    .dark {
+        .button {
+            color: black;
+            background-color: rgb(216, 216, 216);
+        }
+        .input {
+            color: black;
+            background-color: rgb(232, 232, 232);
+        }
+        .menu {
+            color: white;
+            background-color: rgb(36, 36, 36);
+        }
+        .body {
+            color: white;
+            background-color: black;
+        }
+    }
+}
+
+.color-menu() {
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+}

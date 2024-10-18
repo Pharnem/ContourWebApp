@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Contour",
+            "database": "${workspaceFolder:Contour}/contour.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

@@ -1,0 +1,74 @@
+@import "conf.less";
+
+.form-container {
+    margin: auto;
+    width: 100ex;
+    max-width: 100%;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+}
+
+.form-title {
+    font-size: 3rem;
+}
+
+.form-status {
+    font-weight: bold;
+    &.status-error {
+        color: palevioletred;
+    }
+}
+
+.form-content {
+    margin-left: auto;
+    margin-right: auto;
+    input, textarea {
+        text-align: center;
+        font-size: larger;
+        width: 100%;
+        padding: 0.5em 0;
+        margin-bottom: 1em;
+        border-radius: 1em;
+        resize: none;
+    }
+    textarea {
+        height: 10em;
+    }
+    button {
+        text-align: center;
+        font-size: larger;
+        width: 100%;
+        padding: 0.5em 0;
+        margin-bottom: 1em;
+        border-radius: 1em;
+    }
+    img {
+        max-width: 4em;
+    }
+}
+
+.form-postnote {
+    a {
+        text-decoration: none;
+        border-radius: 1em;
+        padding: 0.5em;
+        @media @light {
+            #theme.light.input();
+        }
+        @media @dark {
+            #theme.dark.input();
+        }
+        &:hover {
+            color: #theme[accent];
+        }
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <title>@|title|</title>
+    <link rel="stylesheet" href="/css/layout.css">
+    @in[s styles]{
+        <link rel="stylesheet" href="/css/@|s|.css">
+    }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    @in[s scripts]{
+        <script src="/js/@|s|.js" defer></script> 
+    }
+    <script>
+        /*to prevent Firefox FOUC, this must be here*/
+        let FF_FOUC_FIX;
+    </script>
+</head>
+<body>
+    <div id="root">
+        <nav id="navbar">
+            <a @maybe[(equal? discriminator 'user)]{class="active"} href='@if[@(session-user) "/users/me" "/login"]'>@if[@(session-user) "Profile" "Login"]</a>
+            <a @maybe[(equal? discriminator 'authors)]{class="active"} href="/users/">Authors</a>
+            <a @maybe[(equal? discriminator 'pictures)]{class="active"} href="/pictures/">Pictures</a>
+            @maybe[(session-user)]{<a @maybe[(equal? discriminator 'bookmarks)]{class="active"} href="/users/me/bookmarks">Pictmarks</a>}
+            @maybe[(session-user)]{<a @maybe[(equal? discriminator 'post)]{class="active"} href="/pictures/new">Post</a>}
+        </nav>
+        <article id="content">
+            @(apply content content-args)
+        </article>
+    </div>
+</body>

@@ -1,0 +1,171 @@
+@import "conf.less";
+
+* {
+    box-sizing: border-box;
+    font-family: "Arial", dans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    @media @light {
+        #theme.light.body()
+    }
+    @media @dark {
+        #theme.dark.body()
+    }
+}
+
+#root {
+    display:flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+}
+
+#navbar {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    position: fixed;
+    min-height: 100vh;
+    height: 100%;
+    overflow: auto;
+    z-index: 5000;
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+    a {
+        display: block;
+        padding: 16px;
+        text-decoration: none;
+        @media @light {
+            #theme.light.menu()
+        }
+        @media @dark {
+            #theme.dark.menu()
+        }
+        &:hover,&.active {
+            background-color: #theme[accent];
+            transition: background-color 0.2s;
+        }
+        &.active {
+            pointer-events: none;
+        }
+        transition: background-color 1s;
+    }
+
+    @media @small, @medium {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        min-height: initial;
+        height: auto;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        a {
+            float: left;
+        }
+        overflow-x: scroll;
+    }
+}
+
+#content {
+    margin-left: 200px;
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    padding-top: 2em;
+    @media @small,@medium {
+        margin-left: 0px;
+        padding-top: 5em;
+    }
+}
+
+form {
+    box-sizing: content-box;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    @media @light {
+        #theme.light.menu()
+    }
+    @media @dark {
+        #theme.dark.menu()
+    }
+    input {
+        border-width: 0;
+        border-radius: 0.5em;
+        padding-left: 1ex;
+        accent-color: #theme[accent];
+        @media @light {
+            #theme.light.input()
+        }
+        @media @dark {
+            #theme.dark.input()
+        }
+        &:focus {
+            outline-color: #theme[accent];
+        }
+    }
+    input[type="file"] {
+        content: none;
+        padding: 0;
+        @media @light {
+            #theme.dark.button();
+            background-color: transparent;
+        }
+        @media @dark {
+            #theme.light.button();
+            background-color: transparent;
+        }
+        /*&::file-selector-button {
+            border-radius: 0.5em;
+            border-width: 0;
+            padding: 0.25em 0.5em 0.25em 0.5em;
+            @media @light {
+                #theme.light.button()
+            }
+            @media @dark {
+                #theme.dark.button()
+            }
+        }*/
+    }
+    textarea {
+        @media @light {
+            #theme.light.input()
+        }
+        @media @dark {
+            #theme.dark.input()
+        }
+    }
+}
+
+a.button, button, input[type="file"]::file-selector-button {
+    text-decoration: none;
+    border-radius: 0.5em;
+    border-width: 0;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    cursor: pointer;
+    @media @light {
+        #theme.light.button()
+    }
+    @media @dark {
+        #theme.dark.button()
+    }
+    &:hover {
+        color: #theme[accent];
+    }
+    &:active {
+        x: #theme[accent];
+        background-color: fade($x,20%);
+    }
+    transition: background-color 0.1s;
+}
+

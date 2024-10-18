@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+  font-family: "Arial", dans-serif;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+@media (prefers-color-scheme: light) {
+  body {
+    color: black;
+    background-color: white;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: black;
+  }
+}
+#root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+}
+#navbar {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  position: fixed;
+  min-height: 100vh;
+  height: 100%;
+  overflow: auto;
+  z-index: 5000;
+}
+@media (prefers-color-scheme: light) {
+  #navbar {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #navbar {
+    color: white;
+    background-color: #242424;
+  }
+}
+#navbar a {
+  display: block;
+  padding: 16px;
+  text-decoration: none;
+  transition: background-color 1s;
+}
+@media (prefers-color-scheme: light) {
+  #navbar a {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #navbar a {
+    color: white;
+    background-color: #242424;
+  }
+}
+#navbar a:hover,
+#navbar a.active {
+  background-color: #eb8c1f;
+  transition: background-color 0.2s;
+}
+#navbar a.active {
+  pointer-events: none;
+}
+@media (max-width: 800px), (max-width: 1200px) {
+  #navbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-height: initial;
+    height: auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow-x: scroll;
+  }
+  #navbar a {
+    float: left;
+  }
+}
+#content {
+  margin-left: 200px;
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+  padding-top: 2em;
+}
+@media (max-width: 800px), (max-width: 1200px) {
+  #content {
+    margin-left: 0px;
+    padding-top: 5em;
+  }
+}
+form {
+  box-sizing: content-box;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+@media (prefers-color-scheme: light) {
+  form {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  form {
+    color: white;
+    background-color: #242424;
+  }
+}
+form input {
+  border-width: 0;
+  border-radius: 0.5em;
+  padding-left: 1ex;
+  accent-color: #eb8c1f;
+}
+@media (prefers-color-scheme: light) {
+  form input {
+    color: white;
+    background-color: #5b5b5b;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  form input {
+    color: black;
+    background-color: #e8e8e8;
+  }
+}
+form input:focus {
+  outline-color: #eb8c1f;
+}
+form input[type="file"] {
+  content: none;
+  padding: 0;
+  /*&::file-selector-button {
+            border-radius: 0.5em;
+            border-width: 0;
+            padding: 0.25em 0.5em 0.25em 0.5em;
+            @media @light {
+                #theme.light.button()
+            }
+            @media @dark {
+                #theme.dark.button()
+            }
+        }*/
+}
+@media (prefers-color-scheme: light) {
+  form input[type="file"] {
+    color: black;
+    background-color: #d8d8d8;
+    background-color: transparent;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  form input[type="file"] {
+    color: white;
+    background-color: #242424;
+    background-color: transparent;
+  }
+}
+@media (prefers-color-scheme: light) {
+  form textarea {
+    color: white;
+    background-color: #5b5b5b;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  form textarea {
+    color: black;
+    background-color: #e8e8e8;
+  }
+}
+a.button,
+button,
+input[type="file"]::file-selector-button {
+  text-decoration: none;
+  border-radius: 0.5em;
+  border-width: 0;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+@media (prefers-color-scheme: light) {
+  a.button,
+  button,
+  input[type="file"]::file-selector-button {
+    color: white;
+    background-color: #242424;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  a.button,
+  button,
+  input[type="file"]::file-selector-button {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+a.button:hover,
+button:hover,
+input[type="file"]::file-selector-button:hover {
+  color: #eb8c1f;
+}
+a.button:active,
+button:active,
+input[type="file"]::file-selector-button:active {
+  x: #eb8c1f;
+  background-color: rgba(235, 140, 31, 0.2);
+}

@@ -1,0 +1,80 @@
+<form id="filters" method="GET" action="/pictures/">
+    <label id="author-label" for="author-input">Author:</label>
+    <input id="author-input" name="author" list="authors-list" type="text" placeholder="Author" value="@|author|">
+    <label id="tags-label" for="tags-input">Tags:</label>
+    <input id="tags-input" name="tags" type="text" placeholder="tag1 tag2 ..." value='@(string-join tags " ")'>
+    <button id="search" type="submit">Search</button>
+    @maybe[(and (session-user) (user-manager? (session-user)))]{
+        <input type="checkbox" id="restricted-toggle" name="restricted" value="true" @maybe[restricted]{checked}>
+        <label id="restricted-label" for="restricted-toggle">View Restricted?</label>
+    }
+    <datalist id="authors-list">
+        @in[(id author) authors]{
+            <option value="@(user-name author)">
+        }
+    </datalist>
+</form>
+<div class="page-nav">
+    <a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=1&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+    @maybe[(equal? 1 page)]{class="active"}>1</a>
+    @maybe[(> page 3)]{
+        ...
+    }
+    @in[pg (inclusive-range (max 2 (- page 2)) (min (sub1 page-count) (+ page 2)))]{
+        <a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=@|pg|&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+        @maybe[(equal? pg page)]{class="active"}>@|pg|</a> 
+    }
+    @maybe[(< (+ page 2) page-count)]{
+        ...
+    }
+    @maybe[(> page-count 1)]{<a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=@|page-count|&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+    @maybe[(equal? page-count page)]{class="active"}>@|page-count|</a>}
+</div>
+<div>
+    @in[p pictures]{
+        <div id="@(picture-id p)" class="card">
+                <div class="card-image">
+                    <a href="/pictures/@(picture-id p)">
+                        <img src="@(picture-thumbnail p)" alt="@(picture-title p)">
+                    </a>
+                </div>
+                <div class="card-user"><div>@(user-name (hash-ref authors (picture-author-id p)))</div> <img src="@(user-avatar (hash-ref authors (picture-author-id p)))"></div>
+                <div class="card-title"> @(picture-title p)</div>
+                <div class="card-tags">
+                    @in[t (picture-tags p)]{
+                        <a class="button card-tag" href="/pictures/?tags=@|t|@maybe[restricted]{&restricted=true}">@|t|</a>
+                    }
+                </div>
+                <div class="card-like">
+                    <button type="button"
+                    data-method="POST" 
+                    data-uri="/api/pictures/@(picture-id p)/bookmark"
+                    data-on-icon="turned_in"
+                    data-off-icon="turned_in_not"
+                    data-on-value='{"bookmark": true}'
+                    data-off-value='{"bookmark": false}'
+                    data-toggle='@if[(picture-bookmark p) "on" "off"]'
+                    @maybe[(not (session-user))]{disabled}></button>
+                </div>
+                <div class="card-desc">
+                    @(picture-description p)
+                </div>
+        </div>
+    }
+</div>
+<div class="page-nav">
+    <a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=1&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+    @maybe[(equal? 1 page)]{class="active"}>1</a>
+    @maybe[(> page 3)]{
+        ...
+    }
+    @in[pg (inclusive-range (max 2 (- page 2)) (min (sub1 page-count) (+ page 2)))]{
+        <a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=@|pg|&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+        @maybe[(equal? pg page)]{class="active"}>@|pg|</a> 
+    }
+    @maybe[(< (+ page 2) page-count)]{
+        ...
+    }
+    @maybe[(> page-count 1)]{<a href='?author=@or[author ""]&tags=@(string-join tags " ")&page=@|page-count|&page-size=@|page-size|@maybe[restricted]{&restricted=true}'
+    @maybe[(equal? page-count page)]{class="active"}>@|page-count|</a>}
+</div>

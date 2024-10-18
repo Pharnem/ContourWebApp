@@ -1,0 +1,15 @@
+<div class="form-container">
+    <div class="form-title">Login</div>
+    <div class="form-status"></div>
+    <form class="form-content" data-method="post" data-uri="/api/sessions/" data-redirect-uri="/pictures/" data-send-json>
+        <label for="username" hidden>Username</label>
+        <input type="text" placeholder="Username" name="username" required/>
+        <label for="password" hidden>Password</label>
+        <input type="password" placeholder="Password" name="password" required/>
+        <button type="submit">Login</button>
+    </form>
+    <div class="form-postnote">
+        <a href="/recovery">Reset password?</a>
+        <a href="/register">Register instead?</a>
+    </div>
+</div>

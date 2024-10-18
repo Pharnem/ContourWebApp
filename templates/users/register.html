@@ -1,0 +1,15 @@
+<div id="container">
+    <h1>Register</h1>
+    <form id="main-form" action="/api/users/" method="post" enctype="multipart/form-data">
+        <label for="username" hidden>Username</label>
+        <input type="text" placeholder="Username" name="username" required/><br/>
+        <label for="password" hidden>Password</label>
+        <input type="password" placeholder="Password" name="password" required/><br/>
+        <label for="repeat-password" hidden>Repeat Password</label>
+        <input type="password" placeholder="Password" name="repeat-password" required/><br/>
+        <label for="avatar">Avatar</label>
+        <input type="file" name="avatar"><br/>
+        <button type="submit">Register</button>
+    </form>
+    <a href="/login">Login instead?</a>
+</div>

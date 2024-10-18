@@ -1,0 +1,55 @@
+form {
+  margin: auto;
+  width: max-content;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1ex 3fr;
+  grid-template-rows: 2em 0em 2em 0.5em 6em 0.5em 2em 1em 2em;
+  grid-template-areas: "lfile . file" ". . ." "ltitle . title" ". . ." "ldesc . desc" ". . ." "ltags . tags" ". . ." "sub sub sub";
+}
+@media (prefers-color-scheme: light) {
+  form {
+    color: black;
+    background-color: #d8d8d8;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  form {
+    color: white;
+    background-color: #242424;
+  }
+}
+#file-label {
+  grid-area: lfile;
+}
+#title-label {
+  grid-area: ltitle;
+}
+#description-label {
+  grid-area: ldesc;
+}
+#tags-label {
+  grid-area: ltags;
+}
+#file {
+  grid-area: file;
+}
+#title {
+  grid-area: title;
+}
+#description {
+  grid-area: desc;
+  resize: none;
+  border-width: 0;
+  border-radius: 0.5em;
+  padding-left: 1ex;
+  padding-right: 1ex;
+}
+#tags {
+  grid-area: tags;
+}
+#submit-button {
+  grid-area: sub;
+}

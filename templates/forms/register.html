@@ -1,0 +1,21 @@
+<div class="form-container">
+    <div class="form-title">Register</div>
+    <div class="form-status"></div>
+    <form class="form-content" data-method="post" data-uri="/api/users/" data-redirect-uri="/pictures/">
+        <label for="username" hidden>Username</label>
+        <input type="text" placeholder="Username" name="username" required/>
+        <label for="email" hidden>Email</label>
+        <input type="email" placeholder="user@"@"mail.com" name="email" required/>
+        <label for="password" hidden>Password</label>
+        <input type="password" placeholder="Password" name="password" required/>
+        <label for="repeat-password" hidden>Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" name="repeat-password" data-field-equals="password" required/>
+        <label for="avatar" hidden>Avatar</label>
+        <input type="file" name="avatar" placeholder="Avatar" accept="image/*">
+        <img data-preview="avatar">
+        <button type="submit">Register</button>
+    </form>
+    <div class="form-postnote">
+        <a href="/login">Login instead?</a>
+    </div>
+</div>
